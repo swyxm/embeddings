@@ -1,0 +1,361 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 15 15 17;
+    --foreground: 245 245 247;
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+    --primary: 15 23 42;
+    --primary-foreground: 248 250 252;
+    --secondary: 241 245 249;
+    --secondary-foreground: 15 23 42;
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
+    --accent: 241 245 249;
+    --accent-foreground: 15 23 42;
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 148 163 184;
+    --radius: 0.75rem;
+    --accent-color: rgb(99 102 241);
+    --accent-glow: 99 102 241;
+  }
+
+  .dark {
+    --background: 8 8 12;
+    --foreground: 250 250 250;
+    --card: 255 255 255;
+    --card-foreground: 250 250 250;
+    --popover: 24 24 27;
+    --popover-foreground: 245 245 247;
+    --primary: 245 245 247;
+    --primary-foreground: 15 15 17;
+    --secondary: 39 39 42;
+    --secondary-foreground: 245 245 247;
+    --muted: 39 39 42;
+    --muted-foreground: 161 161 170;
+    --accent: 39 39 42;
+    --accent-foreground: 245 245 247;
+    --destructive: 239 68 68;
+    --destructive-foreground: 245 245 247;
+    --border: 39 39 42;
+    --input: 39 39 42;
+    --ring: 82 82 91;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .macos-window {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 -1px 0 rgba(0, 0, 0, 0.1)
+      inset;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .macos-window-light {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 -1px 0 rgba(0, 0, 0, 0.05)
+      inset;
+  }
+
+  .traffic-lights {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+
+  .traffic-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .traffic-light::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .traffic-light:hover::before {
+    opacity: 1;
+  }
+
+  .traffic-light-red {
+    background: linear-gradient(135deg, #ff5f57 0%, #ff3b30 100%);
+    box-shadow: 0 1px 3px rgba(255, 59, 48, 0.3);
+  }
+
+  .traffic-light-red::before {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .traffic-light-yellow {
+    background: linear-gradient(135deg, #ffbd2e 0%, #ff9500 100%);
+    box-shadow: 0 1px 3px rgba(255, 149, 0, 0.3);
+  }
+
+  .traffic-light-yellow::before {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .traffic-light-green {
+    background: linear-gradient(135deg, #28ca42 0%, #30d158 100%);
+    box-shadow: 0 1px 3px rgba(48, 209, 88, 0.3);
+  }
+
+  .traffic-light-green::before {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .sf-pro {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  .macos-button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .macos-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .macos-button:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .accent-glow {
+    box-shadow: 0 0 20px rgba(var(--accent-glow), 0.3);
+  }
+
+  /* Reset Button Animation */
+  .reset-button-enter {
+    animation: slideInFromRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reset-button-exit {
+    animation: slideOutToRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutToRight {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+  }
+
+  /* Confirmation buttons animation */
+  .confirmation-buttons {
+    animation: fadeInScale 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @keyframes fadeInScale {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Drag and Drop Styles */
+  .drag-ghost {
+    opacity: 0.5;
+    transform: rotate(5deg) scale(0.95);
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .drop-zone {
+    position: relative;
+  }
+
+  .drop-zone::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, var(--accent-color), transparent, var(--accent-color));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .drop-zone.active::before {
+    opacity: 0.5;
+    animation: pulse-border 1s ease-in-out infinite;
+  }
+
+  @keyframes pulse-border {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  /* Minimize Animation - Genie Effect */
+  .minimize-animation {
+    animation: genie-minimize 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transform-origin: center bottom;
+  }
+
+  .restore-animation {
+    animation: genie-restore 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transform-origin: center bottom;
+  }
+
+  @keyframes genie-minimize {
+    0% {
+      transform: scale(1) translateY(0) rotateX(0deg);
+      opacity: 1;
+    }
+    30% {
+      transform: scale(0.9) translateY(10px) rotateX(5deg);
+      opacity: 0.9;
+    }
+    60% {
+      transform: scale(0.6) translateY(40px) rotateX(15deg);
+      opacity: 0.6;
+    }
+    80% {
+      transform: scale(0.3) translateY(60px) rotateX(25deg);
+      opacity: 0.3;
+    }
+    100% {
+      transform: scale(0.1) translateY(80px) rotateX(35deg);
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  @keyframes genie-restore {
+    0% {
+      transform: scale(0.1) translateY(80px) rotateX(35deg);
+      opacity: 0;
+    }
+    20% {
+      transform: scale(0.3) translateY(60px) rotateX(25deg);
+      opacity: 0.3;
+    }
+    40% {
+      transform: scale(0.6) translateY(40px) rotateX(15deg);
+      opacity: 0.6;
+    }
+    70% {
+      transform: scale(0.9) translateY(10px) rotateX(5deg);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1) translateY(0) rotateX(0deg);
+      opacity: 1;
+    }
+  }
+
+  .dock {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  }
+
+  .dock-item {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+  }
+
+  .dock-item:hover {
+    transform: scale(1.2) translateY(-8px);
+  }
+
+  .dock-item:active {
+    transform: scale(1.1) translateY(-4px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
